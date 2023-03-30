@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="customerLogger" class="pl.coderslab.beans.DBCustomerLogger">
+        <constructor-arg ref="dbUtil"/>
+    </bean>
+    <bean id="dbCustomerRepository" class="pl.coderslab.beans.DBCustomerRepository">
+        <constructor-arg ref="customerLogger"/>
+        <constructor-arg ref="dbUtil"/>
+    </bean>
+    <bean id="dbUtil" class="pl.coderslab.utils.DbUtil">
+        <property name="url" value="jdbc:mysql://localhost:3306/customerlogs?useSSL=false&amp;characterEncoding=utf8&amp;serverTimezone=UTC"/>
+        <property name="user" value="root"/>
+        <property name="pass" value="coderslab"/>
+    </bean>
+</beans>
